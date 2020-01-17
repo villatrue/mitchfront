@@ -24,6 +24,12 @@
   color: white;
 }
 
+.paper {
+  /* align-content: align-center; */
+  position:relative;
+  right:-15%;
+}
+
 .App-link {
   color: #61dafb;
 }
