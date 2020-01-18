@@ -14,44 +14,45 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const [jokeContent, setJokeContent] = useState({
-    content: ""              
-})
 
-const renderLat= ()=>{
-
-    let url = `localhost:3000`
-    
-  fetch(url)
-     .then(response => { 
-         if (response.status === 200){
-         return response.json()}
-     })
-     .then(obj => {
-         setJokeContent({obj});
-         // console.log(obj)
-     
-         // console.log(waypointDetails)
-         // debugger
-
-         // props.attress()
-
-     })
-     .catch(function() {
-         alert("error");
-          
-     });
-
- }
 
 export default function JokePaper() {
   const classes = useStyles();
+  const [jokeContent, setJokeContent] = useState([])
+
+//   const addToJokes = (bigArray) =>{
+//     bigArray.map(joke=>(joke.content))
+//     //was hoping to use this to go through everything but its not working out
+//   }
+  
+  const fetchJokes = () =>
+        fetch('http://localhost:3000')
+        .then(response => response.json())
+        .then(obj => {
+            obj.map(joke=>{
+                setJokeContent([...jokeContent,joke.content])
+            })
+            debugger
+            console.log(jokeContent)
+        });
+
+  useEffect(() => {
+    fetchJokes()
+  }, [])
+
+  const handleClick = () => {
+      console.log(jokeContent)
+  }
+
+
 
   return (
     <div className={classes.root}>
  
-      <Paper className= "paper" elevation={3}> Content </Paper>
+      <Paper className= "paper" elevation={3}> {jokeContent}</Paper>
+      <button onClick={()=>{handleClick()}}/>
       {/* make content reflective of obj in the fetch */}
     </div>
   );
 }
+
