@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     margin: "5px",
+    fontFamily: "Courier New, Courier, monospace",
     flexDirection: "column",
     // width: theme.spacing(100),
     // height: theme.spacing(30),
@@ -19,6 +20,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   button: {
+    
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     border: 0,
     borderRadius: 3,
@@ -26,6 +28,13 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     height: 48,
     padding: '0 30px',
+    position: 'absolute',
+    bottom: '3px',
+    left: '50%',
+    marginLeft: '-110px',
+    fontFamily: "Courier New, Courier, monospace"
+    
+    // border: '3px solid red';
   },
 }));
 
@@ -40,7 +49,7 @@ export default function JokePaper() {
 //     bigArray.map(joke=>(joke.content))
 //     //was hoping to use this to go through everything but its not working out
 //   }
-  
+
     const fetchJokes = () =>
         fetch('http://localhost:3000')
         .then(response => response.json())
@@ -55,10 +64,10 @@ export default function JokePaper() {
 
     const displayRandom =(arr)=>{
         const random = arr[Math.floor(Math.random() * arr.length)]
-        if (random === ""){
-            console.log("fixed that for you")
-            random = arr[Math.floor(Math.random() * arr.length)]
-        }
+        // if (random === ""){
+        //     console.log("fixed that for you")
+        //     random = arr[Math.floor(Math.random() * arr.length)]
+        // }
         setRandomJoke(random)
     }
 
@@ -75,18 +84,17 @@ export default function JokePaper() {
 
   return (
     <div className={classes.root}>
- 
-      <Paper className= "paper" elevation={3}> 
-        {randomJoke} 
+
+      <Paper className= "paper" elevation={3}>
+        {randomJoke}
         <br/>
         <Button className= {classes.button} onClick={()=>{handleClick()}}>
             Randomize Joke
         </Button>
-        
+
       </Paper>
-      
+
       {/* make content reflective of obj in the fetch */}
     </div>
   );
 }
-

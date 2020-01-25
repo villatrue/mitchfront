@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme => ({
         height: theme.spacing(20),
       },
     },
+    p: {
+      fontFamily: "Courier New, Courier, monospace"
+    },
   }));
   
   
@@ -37,8 +40,11 @@ const useStyles = makeStyles(theme => ({
       <div className={classes.root}>
    
         <Paper className= "paper" elevation={3}> 
-          Project details ipsum
-          
+          <p className={classes.p}>
+            I built this project as a tribute to Mitch Hedgeberg and to all victims of addiction. I used a nokogiri to scrape all of his top jokes from a buzzfeed article.
+            For the front end I used React.JS and Material UI and used hooks with the Use Styles library to style my code.
+            This is a pet project and thanks for checking it out!
+          </p>
         </Paper>
         
         {/* make content reflective of obj in the fetch */}
